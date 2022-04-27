@@ -1,0 +1,3 @@
+{"level":"INFO","timestamp":"2022-04-27T15:20:25.527+0800","caller":"channels/simple_log.go:32","message":"bbbbbbbbbb"}
+{"level":"INFO","timestamp":"2022-04-27T15:20:25.528+0800","caller":"channels/simple_log.go:32","message":"cccccccccc"}
+{"level":"INFO","timestamp":"2022-04-27T15:20:25.528+0800","caller":"channels/simple_log.go:32","message":"dddddddddd"}
