@@ -1,4 +1,4 @@
-module logger
+module github.com/starme/logger
 
 go 1.15
 
