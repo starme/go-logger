@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"logger/channels"
+	"github.com/starme/logger/channels"
 	"testing"
 )
 
@@ -10,7 +10,7 @@ func TestNewLog(t *testing.T) {
 		def: "daily",
 		channels: map[string]channels.ChannelConf{
 			"simple": SimpleLogConf{
-				path: "./log/test.log",
+				path:  "./log/test.log",
 				level: "Info",
 			},
 		},

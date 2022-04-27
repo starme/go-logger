@@ -1,22 +1,21 @@
 package logger
 
-import "logger/channels"
+import "github.com/starme/logger/channels"
 
 type LogConfig struct {
-	def	   string
+	def      string
 	channels map[string]channels.ChannelConf
 }
 
 type DailyLogConf struct {
-	path   string
-	level  string
-	daily  int
+	path  string
+	level string
+	daily int
 }
 
 func (conf DailyLogConf) GetFileName() string { return conf.path }
 
 func (conf DailyLogConf) GetLevel() string { return conf.level }
-
 
 type SimpleLogConf struct {
 	path  string

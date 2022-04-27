@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"logger/channels"
+	"github.com/starme/logger/channels"
 )
 
 var channelCenter map[string]channels.Channel
@@ -17,7 +17,7 @@ func NewLog(conf LogConfig) {
 	channelCenter = make(map[string]channels.Channel)
 	for name, config := range conf.channels {
 		channel := makeChannel(name, config)
-		if channel == nil{
+		if channel == nil {
 			continue
 		}
 		channelCenter[name] = channel
