@@ -29,7 +29,7 @@ type Handler interface {
 	Fatalf(msg string, fields ...interface{})
 }
 
-func encoder() zapcore.Encoder {
+func jsonEncoder() zapcore.Encoder {
 	encodeConf := zap.NewProductionEncoderConfig()
 	encodeConf.EncodeTime = zapcore.ISO8601TimeEncoder
 	encodeConf.EncodeLevel = zapcore.CapitalLevelEncoder
@@ -37,6 +37,12 @@ func encoder() zapcore.Encoder {
 	encodeConf.MessageKey = "message"
 	encodeConf.TimeKey = "timestamp"
 	return zapcore.NewJSONEncoder(encodeConf)
+}
+
+func consoleEncoder() zapcore.Encoder {
+	encodeConf := zap.NewDevelopmentEncoderConfig()
+	encodeConf.EncodeTime = zapcore.TimeEncoderOfLayout("[2006-01-02 15:04:05]")
+	return zapcore.NewConsoleEncoder(encodeConf)
 }
 
 func level(lvl string) zapcore.Level {

@@ -11,6 +11,8 @@ func MakeHandle(config Channel) (handles.Handler, bool) {
 		return handles.MakeSimpleHandle(config.Path, config.Level), true
 	case "daily":
 		return handles.MakeDailyHandle(config.Path, config.Level, config.Days), true
+	case "std":
+		return handles.MakeStdHandle(), true
 	}
 	return nil, false
 }

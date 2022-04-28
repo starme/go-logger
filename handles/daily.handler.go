@@ -27,7 +27,7 @@ func MakeDailyHandle(path string, level string, daily int) *DailyHandle {
 
 func (handle *DailyHandle) init() {
 	core := zapcore.NewCore(
-		encoder(),
+		jsonEncoder(),
 		zapcore.AddSync(handle.syncer()),
 		level(handle.level),
 	)
