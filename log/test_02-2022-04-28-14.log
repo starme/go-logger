@@ -1,0 +1,3 @@
+{"level":"INFO","timestamp":"2022-04-28T14:35:43.367+0800","caller":"handles/daily.handler.go:55","message":"bbbbbbbbbb"}
+{"level":"INFO","timestamp":"2022-04-28T14:35:43.368+0800","caller":"handles/daily.handler.go:55","message":"cccccccccc"}
+{"level":"INFO","timestamp":"2022-04-28T14:35:43.368+0800","caller":"handles/daily.handler.go:55","message":"dddddddddd"}
