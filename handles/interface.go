@@ -8,9 +8,26 @@ import (
 
 type Handler interface {
 	Debug(msg string, fields ...zap.Field)
-	Info(msg string, fields ...zap.Field)
-}
+	Debugf(msg string, fields ...interface{})
 
+	Info(msg string, fields ...zap.Field)
+	Infof(msg string, fields ...interface{})
+
+	Warn(msg string, fields ...zap.Field)
+	Warnf(msg string, fields ...interface{})
+
+	Error(msg string, fields ...zap.Field)
+	Errorf(msg string, fields ...interface{})
+
+	DPanic(msg string, fields ...zap.Field)
+	DPanicf(msg string, fields ...interface{})
+
+	Panic(msg string, fields ...zap.Field)
+	Panicf(msg string, fields ...interface{})
+
+	Fatal(msg string, fields ...zap.Field)
+	Fatalf(msg string, fields ...interface{})
+}
 
 func encoder() zapcore.Encoder {
 	encodeConf := zap.NewProductionEncoderConfig()

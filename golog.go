@@ -1,30 +1,26 @@
 package logger
 
-var logCenter = make(map[string]*Driver)
+import (
+	"github.com/starme/logger/handles"
+)
 
+var logCenter = make(map[string]handles.Handler)
 
-func With(name string) *Driver {
+var defDriver = ""
+
+func With(name string) handles.Handler {
 	if ch, ok := logCenter[name]; ok {
 		return ch
 	}
-	return nil
+
+	panic("log driver is not found.")
 }
 
 func NewLog(config Config) {
+	defDriver = config.Default
 	for _, config := range config.Channels {
-		channel := makeChannel(config)
-		if channel == nil {
-			continue
-		}
-		logCenter[config.Name] = channel
-	}
-}
-
-func makeChannel(config Channel) *Driver {
-	if handle, ok := MakeHandle(config); ok {
-		return &Driver{
-			handler: handle,
+		if handle, ok := MakeHandle(config); ok {
+			logCenter[config.Name] = handle
 		}
 	}
-	return nil
 }

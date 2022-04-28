@@ -10,11 +10,11 @@ import (
 )
 
 type DailyHandle struct {
-	path	string
-	level	string
-	daily	int
+	path  string
+	level string
+	daily int
 
-	writer	*zap.Logger
+	writer *zap.Logger
 }
 
 func MakeDailyHandle(path string, level string, daily int) *DailyHandle {
@@ -51,6 +51,54 @@ func (handle DailyHandle) Debug(msg string, fields ...zap.Field) {
 	handle.writer.Debug(msg, fields...)
 }
 
+func (handle DailyHandle) Debugf(msg string, fields ...interface{}) {
+	handle.writer.Sugar().Debugf(msg, fields...)
+}
+
 func (handle DailyHandle) Info(msg string, fields ...zap.Field) {
 	handle.writer.Info(msg, fields...)
+}
+
+func (handle DailyHandle) Infof(msg string, fields ...interface{}) {
+	handle.writer.Sugar().Infof(msg, fields...)
+}
+
+func (handle DailyHandle) Warn(msg string, fields ...zap.Field) {
+	handle.writer.Warn(msg, fields...)
+}
+
+func (handle DailyHandle) Warnf(msg string, fields ...interface{}) {
+	handle.writer.Sugar().Warnf(msg, fields...)
+}
+
+func (handle DailyHandle) Error(msg string, fields ...zap.Field) {
+	handle.writer.Error(msg, fields...)
+}
+
+func (handle DailyHandle) Errorf(msg string, fields ...interface{}) {
+	handle.writer.Sugar().Errorf(msg, fields...)
+}
+
+func (handle DailyHandle) DPanic(msg string, fields ...zap.Field) {
+	handle.writer.DPanic(msg, fields...)
+}
+
+func (handle DailyHandle) DPanicf(msg string, fields ...interface{}) {
+	handle.writer.Sugar().DPanicf(msg, fields...)
+}
+
+func (handle DailyHandle) Panic(msg string, fields ...zap.Field) {
+	handle.writer.Panic(msg, fields...)
+}
+
+func (handle DailyHandle) Panicf(msg string, fields ...interface{}) {
+	handle.writer.Sugar().Panicf(msg, fields...)
+}
+
+func (handle DailyHandle) Fatal(msg string, fields ...zap.Field) {
+	handle.writer.Fatal(msg, fields...)
+}
+
+func (handle DailyHandle) Fatalf(msg string, fields ...interface{}) {
+	handle.writer.Sugar().Fatalf(msg, fields...)
 }
