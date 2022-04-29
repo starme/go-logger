@@ -28,7 +28,11 @@ func (handle *SimpleHandle) init() {
 		zapcore.WriteSyncer(file),
 		level(handle.level),
 	)
-	handle.writer = zap.New(core, zap.AddCaller())
+	handle.writer = zap.New(
+		core,
+		zap.AddCaller(),
+		zap.AddCallerSkip(callerSkipOffset),
+	)
 }
 
 func (handle SimpleHandle) Debug(msg string, fields ...zap.Field) {

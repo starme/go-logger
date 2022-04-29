@@ -6,6 +6,8 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
+const callerSkipOffset = 2
+
 type Handler interface {
 	Debug(msg string, fields ...zap.Field)
 	Debugf(msg string, fields ...interface{})

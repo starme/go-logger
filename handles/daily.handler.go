@@ -31,7 +31,11 @@ func (handle *DailyHandle) init() {
 		zapcore.AddSync(handle.syncer()),
 		level(handle.level),
 	)
-	handle.writer = zap.New(core, zap.AddCaller())
+	handle.writer = zap.New(
+		core,
+		zap.AddCaller(),
+		zap.AddCallerSkip(callerSkipOffset),
+	)
 }
 
 func (handle DailyHandle) syncer() io.Writer {
