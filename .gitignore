@@ -18,4 +18,4 @@
 .vscode
 .idea
 log
-logger_test.go
+golog_test.go
