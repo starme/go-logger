@@ -17,4 +17,5 @@
 .DS_Store
 .vscode
 .idea
+log
 logger_test.go
