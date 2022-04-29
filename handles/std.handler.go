@@ -32,7 +32,12 @@ func (handle *StdHandler) init() {
 			return l > zap.WarnLevel
 		}),
 	)
-	handle.writer = zap.New(zapcore.NewTee(stdout, stderr), zap.AddCaller(), zap.Development())
+	handle.writer = zap.New(
+		zapcore.NewTee(stdout, stderr),
+		zap.AddCaller(),
+		zap.AddCallerSkip(2),
+		zap.Development(),
+	)
 }
 
 func (handle StdHandler) Debug(msg string, fields ...zap.Field) {
