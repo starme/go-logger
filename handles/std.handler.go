@@ -35,7 +35,7 @@ func (handle *StdHandler) init() {
 	handle.writer = zap.New(
 		zapcore.NewTee(stdout, stderr),
 		zap.AddCaller(),
-		zap.AddCallerSkip(2),
+		zap.AddCallerSkip(callerSkipOffset),
 		zap.Development(),
 	)
 }
