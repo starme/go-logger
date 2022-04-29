@@ -24,7 +24,7 @@ func MakeSimpleHandle(path, level string, enable bool) *SimpleHandle {
 }
 
 func (handle *SimpleHandle) init() {
-	file, _ := os.Create(handle.path)
+	file, _ := os.OpenFile(handle.path, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	core := zapcore.NewCore(
 		jsonEncoder(),
 		zapcore.WriteSyncer(file),
