@@ -1,12 +1,13 @@
 package handles
 
 import (
-	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 	"io"
 	"strings"
 	"time"
+
+	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 type DailyHandle struct {
@@ -35,6 +36,7 @@ func (handle *DailyHandle) init() {
 		core,
 		zap.AddCaller(),
 		zap.AddCallerSkip(callerSkipOffset),
+		zap.AddStacktrace(zap.ErrorLevel),
 	)
 }
 

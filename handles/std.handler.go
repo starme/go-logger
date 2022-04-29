@@ -1,9 +1,10 @@
 package handles
 
 import (
+	"os"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"os"
 )
 
 type StdHandler struct {
@@ -37,6 +38,7 @@ func (handle *StdHandler) init() {
 		zap.AddCaller(),
 		zap.AddCallerSkip(callerSkipOffset),
 		zap.Development(),
+		zap.AddStacktrace(zap.ErrorLevel),
 	)
 }
 

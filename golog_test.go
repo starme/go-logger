@@ -1,8 +1,9 @@
 package logger
 
 import (
-	"go.uber.org/zap"
 	"testing"
+
+	"go.uber.org/zap"
 )
 
 func TestNewLog(t *testing.T) {
@@ -22,6 +23,7 @@ func TestNewLog(t *testing.T) {
 				Type:  "daily",
 				Name:  "dailyLog",
 				Level: "Info",
+				Path:  "log/daily.log",
 			},
 		},
 	}
