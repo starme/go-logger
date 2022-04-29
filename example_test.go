@@ -9,17 +9,19 @@ func ExampleNewLog() {
 		Default: "Example",
 		Channels: []Channel{
 			{
-				Type:  "simple",
-				Name:  "Example",
-				Path:  "./log/Example.log",
-				Level: "Info",
+				Type:         "simple",
+				Name:         "Example",
+				Path:         "./log/Example.log",
+				Level:        "Info",
+				CallerEnable: true,
 			},
 			{
-				Type:  "daily",
-				Name:  "my_log",
-				Path:  "./log/Example_02.log",
-				Level: "Info",
-				Days:  7,
+				Type:         "daily",
+				Name:         "my_log",
+				Path:         "./log/Example_02.log",
+				Level:        "Info",
+				MaxAge:       7,
+				CallerEnable: false,
 			},
 		},
 	}

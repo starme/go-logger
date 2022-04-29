@@ -11,16 +11,17 @@ import (
 )
 
 type DailyHandle struct {
-	path  string
-	level string
-	daily int
+	path         string
+	level        string
+	daily        int
+	callerEnable bool
 
 	writer *zap.Logger
 }
 
-func MakeDailyHandle(path string, level string, daily int) *DailyHandle {
+func MakeDailyHandle(path, level string, daily int, enable bool) *DailyHandle {
 	handler := &DailyHandle{
-		path: path, level: level, daily: daily,
+		path: path, level: level, daily: daily, callerEnable: enable,
 	}
 	handler.init()
 	return handler
@@ -34,13 +35,16 @@ func (handle *DailyHandle) init() {
 	)
 	handle.writer = zap.New(
 		core,
-		zap.AddCaller(),
+		zap.WithCaller(handle.callerEnable),
 		zap.AddCallerSkip(callerSkipOffset),
 		zap.AddStacktrace(zap.ErrorLevel),
 	)
 }
 
 func (handle DailyHandle) syncer() io.Writer {
+	if handle.daily == 0 {
+		handle.daily = 1
+	}
 	logs, err := rotatelogs.New(
 		strings.Replace(handle.path, ".log", "-%Y-%m-%d.log", 1),
 		rotatelogs.WithLinkName(handle.path),

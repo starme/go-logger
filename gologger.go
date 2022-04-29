@@ -15,9 +15,10 @@ type Config struct {
 }
 
 type Channel struct {
-	Type  LogType
-	Name  string
-	Path  string
-	Level string
-	Days  int
+	Type         LogType
+	Name         string
+	Path         string
+	Level        string
+	MaxAge       int
+	CallerEnable bool
 }

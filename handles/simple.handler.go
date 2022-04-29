@@ -8,15 +8,16 @@ import (
 )
 
 type SimpleHandle struct {
-	path  string
-	level string
+	path         string
+	level        string
+	callerEnable bool
 
 	writer *zap.Logger
 }
 
-func MakeSimpleHandle(path string, level string) *SimpleHandle {
+func MakeSimpleHandle(path, level string, enable bool) *SimpleHandle {
 	handler := &SimpleHandle{
-		path: path, level: level,
+		path: path, level: level, callerEnable: enable,
 	}
 	handler.init()
 	return handler
@@ -31,7 +32,7 @@ func (handle *SimpleHandle) init() {
 	)
 	handle.writer = zap.New(
 		core,
-		zap.AddCaller(),
+		zap.WithCaller(handle.callerEnable),
 		zap.AddCallerSkip(callerSkipOffset),
 		zap.AddStacktrace(zap.ErrorLevel),
 	)

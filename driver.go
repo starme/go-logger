@@ -9,9 +9,9 @@ func MakeHandle(config Channel) (handles.Handler, bool) {
 	var handler handles.Handler
 	switch config.Type {
 	case Simple:
-		handler = handles.MakeSimpleHandle(config.Path, config.Level)
+		handler = handles.MakeSimpleHandle(config.Path, config.Level, config.CallerEnable)
 	case Daily:
-		handler = handles.MakeDailyHandle(config.Path, config.Level, config.Days)
+		handler = handles.MakeDailyHandle(config.Path, config.Level, config.MaxAge, config.CallerEnable)
 	case Std:
 		handler = handles.MakeStdHandle()
 	}
