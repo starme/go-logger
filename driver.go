@@ -6,15 +6,19 @@ import (
 )
 
 func MakeHandle(config Channel) (handles.Handler, bool) {
+	var handler handles.Handler
 	switch config.Type {
-	case "simple":
-		return handles.MakeSimpleHandle(config.Path, config.Level), true
-	case "daily":
-		return handles.MakeDailyHandle(config.Path, config.Level, config.Days), true
-	case "std":
-		return handles.MakeStdHandle(), true
+	case Simple:
+		handler = handles.MakeSimpleHandle(config.Path, config.Level)
+	case Daily:
+		handler = handles.MakeDailyHandle(config.Path, config.Level, config.Days)
+	case Std:
+		handler = handles.MakeStdHandle()
 	}
-	return nil, false
+	if handler == nil {
+		return handler, false
+	}
+	return handler, true
 }
 
 func Debug(msg string, fields ...zap.Field) {

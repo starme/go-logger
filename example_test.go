@@ -1,33 +1,83 @@
 package logger
 
+import (
+	"go.uber.org/zap"
+)
+
 func ExampleNewLog() {
 	conf := Config{
-		Default: "test",
+		Default: "Example",
 		Channels: []Channel{
 			{
-				Type: "simple",
-				Name: "test",
-				Path: "./log/test.log",
+				Type:  "simple",
+				Name:  "Example",
+				Path:  "./log/Example.log",
 				Level: "Info",
 			},
 			{
-				Type: "daily",
-				Name: "my_log",
-				Path: "./log/test_02.log",
+				Type:  "daily",
+				Name:  "my_log",
+				Path:  "./log/Example_02.log",
 				Level: "Info",
-				Days: 7,
+				Days:  7,
 			},
 		},
 	}
 
 	NewLog(conf)
+}
 
-	With("my_log").Info("bbbbbbbbbb")
-	With("my_log").Info("cccccccccc")
-	With("my_log").Info("dddddddddd")
+func ExampleWith() {
+	ExampleNewLog()
+	With("simpleLog")
+}
 
-	With("test").Info("bbbbbbbbbb")
-	With("test").Info("cccccccccc")
-	With("test").Info("dddddddddd")
+func ExampleDebug() {
+	ExampleNewLog()
+	Debug("this is debug log.", zap.String("context", "lalala..."))
+}
 
+func ExampleInfo() {
+	ExampleNewLog()
+	Info("this is info log.")
+}
+
+func ExampleWarn() {
+	ExampleNewLog()
+	Warn("this is warning log.")
+}
+
+func ExampleError() {
+	ExampleNewLog()
+	Error("this is error log.")
+}
+
+func ExampleDPanic() {
+	ExampleNewLog()
+	DPanic("this is panic log.")
+}
+
+func ExamplePanic() {
+	ExampleNewLog()
+	Panic("this is panic log.")
+}
+
+func ExampleFatal() {
+	ExampleNewLog()
+	Fatal("this is fatal log.")
+}
+
+func ExampleDebugf() {
+	ExampleNewLog()
+	Debugf("%s this is debug log.", "lalala...")
+}
+
+func ExampleInfof() {
+	ExampleNewLog()
+	Infof("this is info log.")
+}
+
+func ExampleWarnf() {
+	ExampleNewLog()
+	Warnf("this is warning log.")
 }

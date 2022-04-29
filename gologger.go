@@ -1,5 +1,13 @@
 package logger
 
+type LogType string
+
+const (
+	Simple LogType = "simple"
+	Daily  LogType = "daily"
+	Std    LogType = "std"
+)
+
 type Config struct {
 	Default string
 
@@ -7,9 +15,9 @@ type Config struct {
 }
 
 type Channel struct {
-	Type	string
-	Name	string
-	Path	string
-	Level	string
-	Days	int
+	Type  LogType
+	Name  string
+	Path  string
+	Level string
+	Days  int
 }
